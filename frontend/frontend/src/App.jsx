@@ -29,7 +29,10 @@ useEffect(()=>{
   return (
     <>
     <Header/>
+
+   
    <main>
+   
     <Outlet/>
    </main>
     </>

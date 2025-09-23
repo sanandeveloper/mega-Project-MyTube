@@ -26,16 +26,7 @@ function ChangeName() {
 
   const ischnaged = name.trim() !== user.fullName
 
-  if (loading) {
-  return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="w-10 h-10 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
-      <span className="ml-3 text-lg font-medium text-gray-600">
-        Loading...
-      </span>
-    </div>
-  )
-}
+ 
 
 
   return (
@@ -51,13 +42,14 @@ function ChangeName() {
           <input
             type="text"
             value={name}
+            disabled={loading}
             onChange={(e) => setName(e.target.value)}
             className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
           />
         </div>
 
         <div className="mt-6 flex justify-end">
-          {ischnaged && (
+          {loading ? <Button>Saving</Button>:ischnaged && (
             <Button onClick={handleNameChange} className="px-6 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700 transition">
               Save
             </Button>

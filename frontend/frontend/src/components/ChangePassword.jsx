@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { changePassword } from './store/authSlice'
+import { useNavigate } from 'react-router-dom'
 
 function ChangePassword() {
 
     const dispatch=useDispatch()
+    const navigate=useNavigate()
 
      const[form,setForm]=useState({
         oldPassword:"",
@@ -23,12 +25,16 @@ function ChangePassword() {
             [name]:value
      }))
      }
-     console.log("form",form)
+
+     const isChanged= form.newPassword==form.confirmPassword
 
      const updatePassword=()=>{
 
-        
-        dispatch(changePassword(form))
+        if (isChanged) {
+            dispatch(changePassword(form))
+            .unwrap()
+        }
+      
 
         
      }
@@ -82,12 +88,12 @@ function ChangePassword() {
         </div>
 
         <div className="mt-6 flex justify-end">
-          <button
+         { isChanged && <button
           onClick={updatePassword}
             className="px-6 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700 transition"
           >
             Save
-          </button>
+          </button>}
         </div>
       </div>
     </div>

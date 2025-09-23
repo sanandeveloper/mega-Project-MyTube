@@ -245,12 +245,17 @@ const changeCurrentPassword = asyncHandler(async (req, res) => {
   }
 
   user.password = newPassword;
+  user.passwordUpdatedAt = new Date();
 
   await user.save({ validateBeforeSave: false });
 
   return res
     .status(200)
-    .json(new ApiResponse(200, {}, "password changed Succesfully"));
+    .json(
+  new ApiResponse(200, { passwordUpdatedAt : user.passwordUpdatedAt
+  }, "Password changed successfully")
+);
+
 });
 
 const getCurrentUser = asyncHandler(async (req, res) => {
@@ -541,6 +546,35 @@ const changeEmail=asyncHandler(async(req,res)=>{
 
 })
 
+
+const removeCoverImage=asyncHandler(async(req,res)=>{
+
+
+   const  user= await User.findByIdAndUpdate(req.user?._id,
+
+    {
+       $unset:{
+        coverImage:""
+       }
+    }
+   )
+
+   if (!user) {
+      throw new ApiError(400,"user not found")
+   }
+
+   return res
+   .status(200)
+   .json(
+    new ApiResponse(200,{},"cover image removed succesfully")
+   )
+
+
+
+
+  
+})
+
 export {
   registerUser,
   loginUser,
@@ -556,4 +590,5 @@ export {
   removeAvatar,
   changeUsername,
   changeEmail,
+  removeCoverImage,
 };

@@ -20,6 +20,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
       lowercase: true,
+      unique:true
     },
     password: {
       type: String,
@@ -39,6 +40,9 @@ const userSchema = new Schema(
     watchHistory: {
       type: Schema.Types.ObjectId,
       ref: "Video",
+    },
+    passwordUpdatedAt:{
+     type:String
     },
     refreshToken:{
       type: String

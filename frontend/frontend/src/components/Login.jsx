@@ -30,6 +30,9 @@ function Login() {
       })
       .catch(() => {
         setError("Email or password is incorrect");
+        setTimeout(()=>{
+          setError("");
+        },1500)
       });
   };
 

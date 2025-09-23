@@ -78,6 +78,7 @@ function ChangeAvatar() {
           onChange={(e) => setChngAvatar(e.target.files[0] || null)}
         />
       </div>
+      
 
       <p className="mt-3 mb-3 text-sm text-gray-500">
         Click the avatar to change your profile picture

@@ -13,7 +13,8 @@ import {
   getCurrentUser,
   removeAvatar,
   changeUsername,
-  changeEmail
+  changeEmail,
+  removeCoverImage
 } from "../contollers/user.controller.js";
 // import  {secondUser}  from '../contollers/user.controller.js'
 import { upload } from "../middlewares/multer.middleware.js";
@@ -46,6 +47,7 @@ router.route("/user-channel").get(verifyJwt, getUserChannelProfile);
 router.route("/watch-history").get(verifyJwt, getWatchHistory);
 router.route("/change-username").patch(verifyJwt,changeUsername)
 router.route("/change-email").patch(verifyJwt,changeEmail)
+router.route("/remove-coverimage").patch(verifyJwt,removeCoverImage)
 
 router.route("/current-user").get(verifyJwt, getCurrentUser);
 export default router;

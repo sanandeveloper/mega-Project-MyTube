@@ -1,21 +1,24 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getCurrentUser, removeAvatar } from "./store/authSlice";
+import { getCurrentUser, removeAvatar, removeCoverImage, } from "./store/authSlice";
 
 export default function UserProfileStepper() {
   const user = useSelector((state) => state.auth.user);
   const loading = useSelector((state) => state.auth.loading);
   const dispatch=useDispatch()
-
+  const navigate=useNavigate()
 
    const deleteAvatar=()=>{
 
      if (user) {
-       const useravatar= dispatch(removeAvatar())
-       if (useravatar) {
+       dispatch(removeAvatar())
+       .unwrap()
+       .then(()=>{
+
         dispatch(getCurrentUser())
-       }
+       })
+       
 
      }
 
@@ -27,7 +30,19 @@ export default function UserProfileStepper() {
    },[dispatch])
 
 
-   const navigate=useNavigate()
+     const deleteCoverImage=()=>{
+
+      if (user) {
+       dispatch(removeCoverImage())
+       .unwrap()
+       .then(()=>{
+      
+        dispatch(getCurrentUser())
+
+       })
+      }
+     }
+  
 
   if (!user) {
     return (
@@ -50,6 +65,8 @@ export default function UserProfileStepper() {
   )
 }
 
+
+console.log("user",user)
 
 
 
@@ -112,7 +129,7 @@ export default function UserProfileStepper() {
                     </button>
                     <button
                       className="px-3 py-1 text-sm bg-gray-100 rounded-md hover:bg-gray-200"
-                      // onClick={() => removeCover()}
+                      onClick={deleteCoverImage}
                     >
                       Remove
                     </button>
@@ -294,7 +311,9 @@ export default function UserProfileStepper() {
                 <div className="mt-3">
                   <div className="px-4 py-3 bg-gray-50 border rounded flex items-center justify-between">
                     <p className="text-gray-800 tracking-widest">••••••••</p>
-                    <span className="text-sm text-gray-500">Last changed: {user.passwordChangedAt ? new Date(user.passwordChangedAt).toLocaleDateString() : "Unknown"}</span>
+                    <span className="text-sm text-gray-500">Last changed:  {user.passwordUpdatedAt 
+        ? `${new Date(user.passwordUpdatedAt).toLocaleDateString()}`
+        : "Never changed"}</span>
                   </div>
                 </div>
               </div>
