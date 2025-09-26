@@ -61,13 +61,13 @@ function Header() {
          {authStatus &&(
 
           <div>
-              <button className="p-2 hover:bg-gray-100 rounded-full">
+              <button onClick={()=>navigate("/upload-video")} className="p-2 hover:bg-gray-100 rounded-full">
                 <Video className="w-5 h-5 text-gray-700" />
               </button>
-              <button className="p-2 hover:bg-gray-100 rounded-full">
-                <Bell className="w-5 h-5 text-gray-700" />
-              </button>
           </div>
+
+
+
          )}
   {authStatus && (
   <div className="relative">

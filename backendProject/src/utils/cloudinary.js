@@ -17,7 +17,8 @@ const uploadCloundiary = async (localFilePath) => {
       resource_type: "auto",
     });
     console.log("file is uploaded", response);
-    return response
+      fs.unlinkSync(localFilePath)
+        return response;
   } catch (error) {
     console.log('file not upload :',error)
     fs.unlinkSync(localFilePath);

@@ -3,11 +3,13 @@ import { Camera } from "lucide-react"; // icon librar
 import Button from "./Button";
 import { useDispatch, useSelector } from "react-redux";
 import { changeAvatar, getCurrentUser } from "./store/authSlice";
+import { useNavigate } from "react-router-dom";
 
 function ChangeAvatar() {
   const [Avatar, setChngAvatar] = useState(null);
   const user = useSelector((state) => state.auth.user);
   const loading = useSelector((state) => state.auth.loading);
+  const navigate=useNavigate()
   console.log("user",user)
   const dispatch = useDispatch();
 
@@ -16,8 +18,12 @@ function ChangeAvatar() {
      dispatch(changeAvatar(Avatar)).
      unwrap()
      .then(()=>{
-
+     
       dispatch(getCurrentUser())
+     
+      navigate("/user")
+
+      
      })
     }
     setChngAvatar(null);

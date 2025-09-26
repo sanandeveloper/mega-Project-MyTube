@@ -18,16 +18,31 @@ const videoSchema = new Schema(
     },
     thumbnail: {
       type: String,
-      required: true,
     },
     views:{
      type:Number,
      default:0
     },
+    like:{
+     type:Number,
+     default:0
+    },
+    likedVideo:[
+      {
+        type:Schema.Types.ObjectId,
+        ref:"User"
+      }
+    ],
     owner: {
       type: Schema.Types.ObjectId,
       ref: "User",
     },
+      viewers: [
+    {
+      type:Schema.Types.ObjectId,
+      ref: "User",
+    }
+  ],
     isPublished:{
         type:Boolean,
         default:true

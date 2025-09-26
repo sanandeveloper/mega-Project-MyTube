@@ -26,4 +26,8 @@ console.log("hello world")
 
 app.use("/api/v1/users",router);
 
+import videoRouter from "./routes/video.routes.js";
+
+app.use("/api/v1/video",videoRouter)
+
 export {app};

@@ -53,7 +53,6 @@ const userSchema = new Schema(
 
 
 
-userSchema.plugin(mongooseAggregatePaginate);
 
 userSchema.pre("save", async function (next) {
   console.log("Running pre-save hook...");

@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
-import SignUp from './components/SignUp'
 import { Outlet } from 'react-router-dom'
 import Header from './components/Header/Header'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCurrentUser } from './components/store/authSlice'
+import ShowVideo from './components/video/ShowVideo'
 
 
 function App() {
@@ -29,10 +28,7 @@ useEffect(()=>{
   return (
     <>
     <Header/>
-
-   
-   <main>
-   
+   <main>   
     <Outlet/>
    </main>
     </>
